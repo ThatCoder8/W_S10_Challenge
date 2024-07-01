@@ -1,6 +1,20 @@
-import React from 'react'
-import PizzaForm from './PizzaForm'
-import OrderList from './OrderList'
+// import React from 'react'
+// import PizzaForm from './PizzaForm'
+// import OrderList from './OrderList'
+
+// export default function App() {
+//   return (
+//     <div id="app">
+//       <PizzaForm />
+//       <OrderList />
+//     </div>
+//   )
+// }
+
+// App.js
+import React from 'react';
+import PizzaForm from './PizzaForm';
+import OrderList from './OrderList';
 
 export default function App() {
   return (
@@ -8,5 +22,7 @@ export default function App() {
       <PizzaForm />
       <OrderList />
     </div>
-  )
+  );
 }
+
+
