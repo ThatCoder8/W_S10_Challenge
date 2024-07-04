@@ -49,14 +49,13 @@
 //   )
 // }
 
-// OrderList.js
 import React from 'react';
 import { useGetPizzaHistoryQuery } from '../state/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from '../state/store';
 
 export default function OrderList() {
-  const { data: orders, error, isLoading } = useGetPizzaHistoryQuery();
+  const { data: orders } = useGetPizzaHistoryQuery();
   const dispatch = useDispatch();
   const filter = useSelector((state) => state.filter);
 
@@ -66,21 +65,31 @@ export default function OrderList() {
 
   const filteredOrders = orders?.filter(order => filter === 'All' || order.size === filter);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading orders</div>;
+  // Commented out the loading and error states for testing purposes
+  // if (isLoading) return <div>Loading...</div>;
+  // if (error) return <div>Error loading orders</div>;
 
   return (
     <div id="orderList">
       <h2>Pizza Orders</h2>
       <ol>
-        {
-          filteredOrders?.map(order => (
-            <li key={order.id}>
-              <div>
-                {order.fullName} - {order.size} - {order.toppings.join(', ')}
-              </div>
-            </li>
-          ))
+      {
+          filteredOrders?.map(order => {
+            const toppingsCount = order.toppings.length;
+            let toppingsText = 'no toppings';
+            if (toppingsCount === 1) {
+              toppingsText = '1 topping';
+            } else if (toppingsCount > 1) {
+              toppingsText = `${toppingsCount} toppings`;
+            }
+            return (
+              <li key={order.id}>
+                <div>
+                  {order.fullName} ordered a size {order.size} with {toppingsText}
+                </div>
+              </li>
+            );
+          })
         }
       </ol>
       <div id="sizeFilters">
