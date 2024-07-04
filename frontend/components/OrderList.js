@@ -68,6 +68,7 @@ export default function OrderList() {
   // Commented out the loading and error states for testing purposes
   // if (isLoading) return <div>Loading...</div>;
   // if (error) return <div>Error loading orders</div>;
+  console.log(orders);
 
   return (
     <div id="orderList">
@@ -85,7 +86,7 @@ export default function OrderList() {
             return (
               <li key={order.id}>
                 <div>
-                  {order.fullName} ordered a size {order.size} with {toppingsText}
+                  {order.customer} ordered a size {order.size} with {toppingsText}
                 </div>
               </li>
             );
@@ -109,3 +110,5 @@ export default function OrderList() {
     </div>
   );
 }
+
+
